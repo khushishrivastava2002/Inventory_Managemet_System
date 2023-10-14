@@ -16,6 +16,29 @@ THEMES = (("Anime","Anime"),("Drip and Doodle","Drip and Doodle"),("Abstract","A
 alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.')
 # class colorF(models.Model):
 
+
+# Images all
+
+class crewNeckImg(models.Model):
+    name=models.CharField(max_length=100)
+    img=models.ImageField(upload_to='images/',null=True,blank=True)
+
+    def __str__(self):
+        return self.name
+
+class DropCutImg(models.Model):
+    name=models.CharField(max_length=100)
+    img=models.ImageField(upload_to='images/',null=True,blank=True)
+
+    def __str__(self):
+        return self.name
+
+class OversizedImg(models.Model):
+    name=models.CharField(max_length=100)
+    img=models.ImageField(upload_to='images/',null=True,blank=True)
+
+    def __str__(self):
+        return self.name
 class crewNeckMen(models.Model):
     prod_name = models.CharField(max_length=100)
     prod_desc=models.CharField(max_length=500)
@@ -31,7 +54,7 @@ class crewNeckMen(models.Model):
         ]
     )
     prod_id = models.CharField(max_length=50,unique=True, blank=True, null=True,validators=[alphanumeric])
-    images = models.ImageField(upload_to='images/',null=True,blank=True)
+    images = models.ManyToManyField(crewNeckImg)
 
     def __str__(self):
         return self.prod_name
@@ -51,7 +74,7 @@ class DropCutMen(models.Model):
         ]
     )
     prod_id = models.CharField(max_length=50, blank=True, null=True, validators=[alphanumeric])
-    images = models.ImageField(upload_to='images/',null=True,blank=True)
+    images = models.ManyToManyField(DropCutImg)
 
     def __str__(self):
         return self.prod_name
@@ -71,7 +94,7 @@ class OversizedMen(models.Model):
         ]
     )
     prod_id = models.CharField(max_length=50,unique=True, blank=True, null=True, validators=[alphanumeric])
-    images = models.ImageField(upload_to='images/',null=True,blank=True)
+    images = models.ManyToManyField(OversizedImg)
 
     def __str__(self):
         return self.prod_name
@@ -98,7 +121,7 @@ class crewNeckWomen(models.Model):
         ]
     )
     prod_id = models.CharField(max_length=50,unique=True, blank=True, null=True,validators=[alphanumeric])
-    images = models.ImageField(upload_to='images/',null=True,blank=True)
+    images = models.ManyToManyField(crewNeckImg)
 
     def __str__(self):
         return self.prod_name
@@ -118,7 +141,7 @@ class DropCutWomen(models.Model):
         ]
     )
     prod_id = models.CharField(max_length=50, blank=True, null=True, validators=[alphanumeric])
-    images = models.ImageField(upload_to='images/',null=True,blank=True)
+    images = models.ManyToManyField(DropCutImg)
 
     def __str__(self):
         return self.prod_name
@@ -138,7 +161,7 @@ class OversizedWomen(models.Model):
         ]
     )
     prod_id = models.CharField(max_length=50,unique=True, blank=True, null=True, validators=[alphanumeric])
-    images = models.ImageField(upload_to='images/',null=True,blank=True)
+    images = models.ManyToManyField(OversizedImg)
 
     def __str__(self):
         return self.prod_name

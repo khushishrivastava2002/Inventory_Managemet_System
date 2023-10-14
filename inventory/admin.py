@@ -5,6 +5,12 @@ from .models import *
 class subcat(admin.ModelAdmin):
     list_display=['prod_name','prod_desc','M_R_P','prod_id']
 
+class im(admin.ModelAdmin):
+    list_display=['name']
+# image
+admin.site.register(crewNeckImg,im)
+admin.site.register(DropCutImg,im)
+admin.site.register(OversizedImg,im)
 # CrewNeckMen 
 admin.site.register(crewNeckMen,subcat)
 

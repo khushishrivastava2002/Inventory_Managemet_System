@@ -10,18 +10,36 @@ from rest_framework.permissions import AllowAny,IsAuthenticated
 from rest_framework import routers, serializers, viewsets
 from django.http import HttpResponse
 
+# --------------IMAGE------------------------------------------
+class crewNeckImgSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = crewNeckImg
+        fields = '__all__'
+
+class DropCutImgSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DropCutImg
+        fields = '__all__'
+
+class OversizedImgSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DropCutImg
+        fields = '__all__'
 # ---------------------MEN------------------------------------------------------
 class OversizedMenSerializer(serializers.ModelSerializer):
+    images=OversizedImgSerializer(many=True)
     class Meta:
         model = OversizedMen
         fields = '__all__'
 
 class DropCutMenSerializer(serializers.ModelSerializer):
+    images=DropCutImgSerializer(many=True)
     class Meta:
         model = DropCutMen
         fields = '__all__'
 
 class crewNeckMenSerializer(serializers.ModelSerializer):
+    images=crewNeckImgSerializer(many=True)
     class Meta:
         model = crewNeckMen
         fields = '__all__'
@@ -38,16 +56,19 @@ class MenSerializer(serializers.ModelSerializer):
 # ----------------------WOMEN -------------------------------------------------------------------------
 
 class OversizedWomenSerializer(serializers.ModelSerializer):
+    images=OversizedImgSerializer(many=True)
     class Meta:
         model = OversizedWomen
         fields = '__all__'
 
 class DropCutWomenSerializer(serializers.ModelSerializer):
+    images=DropCutImgSerializer(many=True)
     class Meta:
         model = DropCutWomen
         fields = '__all__'
 
 class crewNeckWomenSerializer(serializers.ModelSerializer):
+    images=crewNeckImgSerializer(many=True)
     class Meta:
         model = crewNeckWomen
         fields = '__all__'
@@ -60,8 +81,8 @@ class womenSerializer(serializers.ModelSerializer):
     class Meta:
         model = men
         fields = '__all__'
-# -----------------------------------------------------------------------------------------
-#-----------------------------------------MAIN---------------------------------------------------
+# ---------------------------------------------------------------------------------
+#-----------------------------------------MAIN----------------------------------------
 class mainSerializer(serializers.ModelSerializer):
     Men = MenSerializer(many=True)
     women=womenSerializer(many=True)
