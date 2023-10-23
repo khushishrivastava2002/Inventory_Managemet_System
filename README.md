@@ -1,4 +1,4 @@
 # Inventory_Managemet_System
 
-Project is in master branch.
-Please visit to the master branch
+# 1) Uploading form with respect to color is in color branch.
+# 2) Uploading form with respect to Design Id is in master branch.
